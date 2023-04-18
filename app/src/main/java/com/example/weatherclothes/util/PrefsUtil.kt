@@ -9,6 +9,7 @@ object PrefsUtil {
     private const val SHARED_PREFERENCES = "TodoSharedPreferences"
     private const val DATE = "date"
     private const val CLOTH = "cloth"
+    private const val TEMP = "temp"
 
     fun initPrefsUtil(context: Context){
         todoSharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
@@ -22,8 +23,14 @@ object PrefsUtil {
         }
 
     var cloth: String?
-        get() = todoSharedPreferences?.getString(CLOTH, "false")
+        get() = todoSharedPreferences?.getString(CLOTH, null)
         set(value){
             todoSharedPreferencesEditor?.putString(CLOTH,value)?.apply()
+        }
+
+    var temp: String?
+        get() = todoSharedPreferences?.getString(TEMP, null)
+        set(value){
+            todoSharedPreferencesEditor?.putString(TEMP,value)?.apply()
         }
 }

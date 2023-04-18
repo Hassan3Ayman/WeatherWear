@@ -14,6 +14,7 @@ import java.io.IOException
 
 class MainActivityPresenter(private val view: IView) {
     private val apiService = ApiServiceImp()
+    private var mDate = ""
     fun getCurrentWeatherCondition(city: String){
         apiService.getCurrentWeatherCondition(city).enqueue(
             object : Callback {
@@ -25,6 +26,7 @@ class MainActivityPresenter(private val view: IView) {
                     if (response.code == 200){
                         val responseBody = response.body?.string()
                         val result = Gson().fromJson(responseBody, BaseJson::class.java)
+                        checkSharedPreference(result.weatherResponse)
                         view.onDataGetSuccess(result.weatherResponse)
                     }else{
                         view.onDataGetFailed(response.body.toString())
@@ -36,12 +38,7 @@ class MainActivityPresenter(private val view: IView) {
     }
 
     private fun checkSharedPreference(result: WeatherResponse) {
-        val date = result.currentDay.split(" ")[0]
-        val cloth = getAClothToWear(result.temp.toDouble().toInt())
-        if (PrefsUtil.date != date){
-            PrefsUtil.date = date
-            PrefsUtil.cloth = cloth.toString()
-        }
+        mDate = result.currentDay.split(" ")[0]
     }
 
     fun getWeatherIcon(condition: String): Int{
@@ -51,6 +48,11 @@ class MainActivityPresenter(private val view: IView) {
 
     fun getAClothToWear(temp: Int): Int{
         val clothes = Clothes()
-        return clothes.getCloth(temp)
+        if (PrefsUtil.date != mDate || PrefsUtil.temp != temp.toString()){
+            PrefsUtil.cloth = clothes.getCloth(temp).toString()
+            PrefsUtil.temp = temp.toString()
+            PrefsUtil.date = mDate
+        }
+        return PrefsUtil.cloth?.toInt()!!
     }
 }
