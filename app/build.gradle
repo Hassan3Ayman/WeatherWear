@@ -3,6 +3,13 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+def getSecretKeys(){
+    def keyFile = project.rootProject.file('local.properties')
+    def properties = new Properties()
+    properties.load(new FileInputStream(keyFile))
+    return properties
+}
+
 android {
     namespace 'com.example.weatherclothes'
     compileSdk 33
@@ -15,6 +22,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'HOST',  getSecretKeys()['HOST']
+        buildConfigField 'String', 'API_KEY',  getSecretKeys()['API_KEY']
     }
 
     buildTypes {

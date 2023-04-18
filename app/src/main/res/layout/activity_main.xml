@@ -4,15 +4,150 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:paddingHorizontal="16dp"
+    android:background="#151D2A"
+    tools:context=".ui.MainActivity">
 
+    <View
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="24dp"
+        android:background="#1D2A3A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/condition_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/container"
+        app:layout_constraintTop_toTopOf="@id/container"
+        app:tint="@color/white" />
+
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="#C7C8CD"
+        app:layout_constraintTop_toTopOf="@id/container"
+        app:layout_constraintStart_toStartOf="@+id/container"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:drawableTint="@color/white"
+        app:drawableStartCompat="@drawable/baseline_location_on_24" />
+
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:textColor="@color/white"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toBottomOf="@+id/container"
+        app:layout_constraintStart_toStartOf="@+id/container"
+        app:layout_constraintTop_toTopOf="@+id/container"
+        app:layout_constraintVertical_bias="0.139" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/temperature"
+        app:layout_constraintTop_toTopOf="@id/temperature"
+        app:layout_constraintBottom_toBottomOf="@id/temperature"
+        app:layout_constraintVertical_bias=".2"
+        android:textSize="24sp"
+        android:text="°C"
+        android:textColor="@color/white"/>
+
+    <!--        android:textColor="#A9FFFF"-->
+
+
+    <TextView
+        android:id="@+id/condition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#C7C8CD"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/temperature"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/temperature"
+        app:layout_constraintTop_toBottomOf="@+id/temperature" />
+
+    <TextView
+        android:id="@+id/wind_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#C7C8CD"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/container"
+        app:layout_constraintEnd_toStartOf="@id/humidity"
+        app:layout_constraintStart_toStartOf="@+id/container"
+        app:layout_constraintTop_toBottomOf="@+id/condition"
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintVertical_bias="1"
+        app:drawableTopCompat="@drawable/wind"
+        android:drawableTint="@color/white"/>
+
+    <TextView
+        android:id="@+id/humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#C7C8CD"
+        app:layout_constraintBottom_toBottomOf="@id/wind_speed"
+        app:layout_constraintStart_toEndOf="@id/wind_speed"
+        app:layout_constraintTop_toTopOf="@id/wind_speed"
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintEnd_toStartOf="@id/temperature_sensible"
+        app:drawableTopCompat="@drawable/humidity"
+        android:drawableTint="@color/white"/>
+
+
+    <TextView
+        android:id="@+id/temperature_sensible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#C7C8CD"
+        app:layout_constraintBottom_toBottomOf="@id/wind_speed"
+        app:layout_constraintStart_toEndOf="@id/humidity"
+        app:layout_constraintEnd_toEndOf="@id/container"
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintTop_toTopOf="@id/wind_speed"
+        app:drawableTopCompat="@drawable/temp_feel"
+        android:drawableTint="@color/white"/>
+    
+    <TextView
+        android:id="@+id/for_the_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="For the Day"
+        android:textStyle="italic|bold"
+        android:textColor="#C7C8CD"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/container"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="16dp"/>
+
+    <ImageView
+        android:id="@+id/image_cloth"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@drawable/cloth_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/for_the_day"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="16dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
