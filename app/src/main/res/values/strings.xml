@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">WeatherClothes</string>
+    <string name="deg_celsius">°C</string>
+    <string name="for_the_day">For the Day</string>
+    <string name="error_message">Something went Wrong</string>
+    <string name="retry">retry</string>
 </resources>

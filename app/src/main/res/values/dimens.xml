@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="temp_text_size">80sp</dimen>
+    <dimen name="text_size_noraml">24sp</dimen>
+    <dimen name="card_height">300dp</dimen>
+    <dimen name="condition_image_size">100dp</dimen>
+    <dimen name="cloth_image_size">300dp</dimen>
+    <dimen name="spacing_normal">16dp</dimen>
+    <dimen name="spacing_very_large">40dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="card_radius">16dp</dimen>
+    <dimen name="stroke_width">2dp</dimen>
+    <dimen name="gap_width">4dp</dimen>
+</resources>

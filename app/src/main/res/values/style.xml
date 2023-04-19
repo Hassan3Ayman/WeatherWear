@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="text_icon" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_size_noraml</item>
+        <item name="android:textColor">@color/color_text_secondry</item>
+        <item name="drawableTint">@color/color_icon</item>
+
+    </style>
+</resources>
