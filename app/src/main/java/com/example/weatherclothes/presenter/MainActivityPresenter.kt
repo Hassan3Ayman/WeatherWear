@@ -1,11 +1,10 @@
 package com.example.weatherclothes.presenter
 
+import com.example.weatherclothes.R
 import com.example.weatherclothes.util.PrefsUtil
 import com.example.weatherclothes.model.Clothes
-import com.example.weatherclothes.model.ConditionIcon
 import com.example.weatherclothes.network.ApiServiceImp
 import com.example.weatherclothes.response.BaseJson
-import com.example.weatherclothes.response.WeatherResponse
 import com.google.gson.Gson
 import okhttp3.Call
 import okhttp3.Callback
@@ -26,7 +25,7 @@ class MainActivityPresenter(private val view: IView) {
                     if (response.code == 200){
                         val responseBody = response.body?.string()
                         val result = Gson().fromJson(responseBody, BaseJson::class.java)
-                        checkSharedPreference(result.weatherResponse)
+                        mDate = result.weatherResponse.currentDay.split(" ")[0]
                         view.onDataGetSuccess(result.weatherResponse)
                     }else{
                         view.onDataGetFailed(response.body.toString())
@@ -37,13 +36,15 @@ class MainActivityPresenter(private val view: IView) {
         )
     }
 
-    private fun checkSharedPreference(result: WeatherResponse) {
-        mDate = result.currentDay.split(" ")[0]
-    }
-
     fun getWeatherIcon(condition: String): Int{
-        val conditionIcon = ConditionIcon()
-          return conditionIcon.getWeatherIcon(condition)
+        return when (condition) {
+            "Partly cloudy" -> R.drawable.partialy_cloudy
+            "Cloudy" -> R.drawable.cloudy
+            "Clear" ->  R.drawable.fine
+            "Sunny" -> R.drawable.sunny
+            "Overcast" -> R.drawable.cloudy
+            else -> R.drawable.rainy
+        }
     }
 
     fun getAClothToWear(temp: Int): Int{
